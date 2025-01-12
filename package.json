@@ -1,0 +1,28 @@
+{
+  "name": "create-scenerystack",
+  "version": "0.0.1",
+  "description": "Creates SceneryStack project templates",
+  "homepage": "https://scenerystack.org/",
+  "bugs": {
+    "url": "https://github.com/scenerystack/community/issues",
+    "email": "scenerstackjs@colorado.edu"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/scenerystack/create-scenerystack.git"
+  },
+  "bin": {
+    "create-scenerystack": "./bin/create-scenerystack.js"
+  },
+  "scripts": {
+    "start": "node ./bin/create-scenerystack.js"
+  },
+  "files": [
+    "bin"
+  ],
+  "dependencies": {
+    "@inquirer/prompts": "^7.2.2",
+    "rimraf": "^6.0.1"
+  }
+}
