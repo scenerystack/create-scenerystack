@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 /**
- * Hooks for `npx scenerystack <command>`.
+ * Hooks for `npm create scenerystack@latest`.
  *
  * NOTE: if testing locally, do something like `npx --prefix ../git/scenerystack scenerystack checkout`
  *
