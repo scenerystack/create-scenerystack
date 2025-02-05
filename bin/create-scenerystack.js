@@ -164,6 +164,7 @@ const ExecuteError = class ExecuteError extends Error {
     choices: [
       { name: 'Vite', value: 'vite', description: 'Use Vite for bundling' },
       { name: 'Webpack', value: 'webpack', description: 'Use Webpack for bundling' },
+      { name: 'Esbuild', value: 'esbuild', description: 'Use Esbuild for bundling' },
       { name: 'Parcel', value: 'parcel', description: 'Use Parcel for bundling' }
     ]
   } );
