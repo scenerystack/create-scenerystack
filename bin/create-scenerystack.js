@@ -163,6 +163,7 @@ const ExecuteError = class ExecuteError extends Error {
     message: 'Bundler with:',
     choices: [
       { name: 'Vite', value: 'vite', description: 'Use Vite for bundling' },
+      { name: 'Webpack', value: 'webpack', description: 'Use Webpack for bundling' },
       { name: 'Parcel', value: 'parcel', description: 'Use Parcel for bundling' }
     ]
   } );
