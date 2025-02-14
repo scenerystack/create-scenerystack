@@ -147,7 +147,7 @@ const ExecuteError = class ExecuteError extends Error {
   } );
 
   const type = await prompts.select( {
-    message: 'Project type:',
+    message: 'Project type (see https://scenerystack.org/learn/overview/#ways-to-use-scenerystack):',
     choices: [
       { name: 'Application', value: 'scenery', description: 'Create an application using Scenery for rendering and input' },
       { name: 'Simulation', value: 'sim', description: 'Create a PhET-like simulation' }
@@ -170,12 +170,12 @@ const ExecuteError = class ExecuteError extends Error {
   } );
 
   const eslint = await prompts.confirm( {
-    message: 'Use ESLint?',
+    message: 'Use ESLint? (ESLint checks for errors, enforces style, etc.)',
     default: false
   } );
 
   const prettier = await prompts.confirm( {
-    message: 'Use Prettier?',
+    message: 'Use Prettier? (Prettier is an opinionated code formatter.)',
     default: false
   } );
 
