@@ -142,7 +142,7 @@ const ExecuteError = class ExecuteError extends Error {
 ( async () => {
 
   const projectName = await prompts.input( {
-    message: 'Project name:',
+    message: 'Project name (directory and npm package name):',
     default: 'scenerystack-project'
   } );
 
@@ -155,29 +155,52 @@ const ExecuteError = class ExecuteError extends Error {
   } );
 
   const title = type === 'sim' ? await prompts.input( {
-    message: 'Project title:',
+    message: 'Simulation title (displayed to users in the UI):',
     default: 'Sim Title'
   } ) : null;
 
-  const bundler = await prompts.select( {
-    message: 'Bundler with:',
+  const { setupMode } = await prompts.select( {
+    name: 'setupMode',
+    message: 'Setup mode:',
     choices: [
-      { name: 'Vite', value: 'vite', description: 'Use Vite for bundling' },
-      { name: 'Webpack', value: 'webpack', description: 'Use Webpack for bundling' },
-      { name: 'Esbuild', value: 'esbuild', description: 'Use Esbuild for bundling' },
-      { name: 'Parcel', value: 'parcel', description: 'Use Parcel for bundling' }
+      {
+        name: 'Quick Start (Recommended)',
+        value: 'quick',
+        description: 'Use recommended settings'
+      },
+      {
+        name: 'Custom Setup',
+        value: 'custom',
+        description: 'Choose your own bundler and settings'
+      }
     ]
   } );
 
-  const eslint = await prompts.confirm( {
-    message: 'Use ESLint? (ESLint checks for errors, enforces style, etc.)',
-    default: false
-  } );
+  let bundler = 'vite';
+  let eslint = true;
+  let prettier = true;
+  if ( setupMode === 'custom' ) {
+    bundler = await prompts.select( {
+      message: 'Bundler with:',
+      choices: [
+        { name: 'Vite', value: 'vite', description: 'Use Vite for bundling' },
+        { name: 'Webpack', value: 'webpack', description: 'Use Webpack for bundling' },
+        { name: 'Esbuild', value: 'esbuild', description: 'Use Esbuild for bundling' },
+        { name: 'Parcel', value: 'parcel', description: 'Use Parcel for bundling' }
+      ]
+    } );
 
-  const prettier = await prompts.confirm( {
-    message: 'Use Prettier? (Prettier is an opinionated code formatter.)',
-    default: false
-  } );
+    eslint = await prompts.confirm( {
+      message: 'Use ESLint? (ESLint checks for errors, enforces style, etc.)',
+      default: false
+    } );
+
+    prettier = await prompts.confirm( {
+      message: 'Use Prettier? (Prettier is an opinionated code formatter.)',
+      default: false
+    } );
+  }
+
 
   const templateName = `${type}-template-${bundler}`;
   const absoluteDir = `${process.cwd()}/${projectName}`;
