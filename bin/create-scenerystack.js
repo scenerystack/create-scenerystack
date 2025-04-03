@@ -141,10 +141,10 @@ const ExecuteError = class ExecuteError extends Error {
 
 ( async () => {
 
-  const projectName = await prompts.input( {
+  const projectName = ( await prompts.input( {
     message: 'Project name (directory and npm package name):',
     default: 'scenerystack-project'
-  } );
+  } ) ).trim(); // filter out extra whitespace that is likely unintentional
 
   const type = await prompts.select( {
     message: 'Project type (see https://scenerystack.org/learn/overview/#ways-to-use-scenerystack):',
@@ -154,10 +154,10 @@ const ExecuteError = class ExecuteError extends Error {
     ]
   } );
 
-  const title = type === 'sim' ? await prompts.input( {
+  const title = type === 'sim' ? ( await prompts.input( {
     message: 'Simulation title (displayed to users in the UI):',
     default: 'Sim Title'
-  } ) : null;
+  } ) ).trim() : null; // filter out extra whitespace that is likely unintentional
 
   const { setupMode } = await prompts.select( {
     name: 'setupMode',
